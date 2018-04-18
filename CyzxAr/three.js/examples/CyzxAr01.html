@@ -297,7 +297,7 @@
 		requestAnimationFrame( animate );
 
 		//
-		var timer = Date.now() * 0.0005;//旋转速度
+		/*var timer = Date.now() * 0.0005;//旋转速度
 		camera.position.x = Math.cos( timer ) * 5;
 		camera.position.y = Math.sin( timer ) * 5;
 		camera.lookAt( scene.position );
@@ -309,7 +309,13 @@
 		// call each update function
 		onRenderFcts.forEach(function(onRenderFct){
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
-		})
+		})*/
+		var axis = new THREE.Vector3(1,1,0);    //创建一个三维向量
+		var rotWorldMatrix = new THREE.Matrix4();      //创建一个4*4矩阵
+		rotWorldMatrix.makeRotationAxis(axis.normalize(),  30 * Math.PI / 180 );
+		rotWorldMatrix.multiply(cube.matrix);                // pre-multiply
+		cube.matrix = rotWorldMatrix;
+		cube.rotation.setFromRotationMatrix(cube.matrix);
 	})
 
 
