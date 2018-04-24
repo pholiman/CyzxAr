@@ -161,9 +161,9 @@
 	    b=y2-y3;
 	    distanceend=Math.sqrt((a*a)+(b*b));
 	    var changex = distancestart/distanceend;
-	    //var changey = changex*changex*changex;
+	    var changey = changex*changex*changex;
 	    //var modelSize = distancestart/distanceend * 12;
-	    modelSize = changex * 3.5;
+	    modelSize = changey * 2.5;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
 	    animate(modelSize);
@@ -179,7 +179,7 @@
 	objectLoader.load("models/CyzxAr02/CyzxAr02.json", function ( obj ) {
 		
 		mesh = obj;
-		mesh.position.y=-0.15;
+		//mesh.position.y=-0.15;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
@@ -193,14 +193,14 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('002');
+
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		camera.position.y=0.05;
+		//camera.position.y=0.05;
 
 		var axis = new THREE.Vector3(0,1,0);
 		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
